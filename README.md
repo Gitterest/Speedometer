@@ -40,6 +40,16 @@ npm run lint
 npm test
 ```
 
+### Custom styles
+
+The project defines a few global utilities:
+
+- `bg-radial` – applies a radial gradient using Tailwind's gradient stops.
+- `frosted-glass` – creates a blurred, translucent panel.
+
+In addition, the Tailwind theme includes `neon.cyan`, `neon.magenta` and
+`neon.lime` color values as well as a `digital` font family.
+
 ## License
 
 This project is released under the [MIT](LICENSE) license.
