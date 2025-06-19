@@ -1,28 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { haversineDistance } from '../utils/geo'
 
-export default function useSpeed() {
-  const [speed, setSpeed] = useState(0)
-  const [distance, setDistance] = useState(0)
-  const [startTime] = useState(Date.now())
-  const [lastPos, setLastPos] = useState(null)
+export default function useSpeed(unit = 'kmh') {
+  const [speedMs, setSpeedMs] = useState(0)
+  const [distance, setDistance] = useState(0) // meters
+  const [error, setError] = useState(null)
+  const startTime = useRef(Date.now())
+  const lastPos = useRef(null)
 
   useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition(pos => {
-      const { speed: spd } = pos.coords
-      setSpeed(spd ? spd * 3.6 : 0) // convert m/s to km/h
-
-      if (lastPos) {
-        const dx = pos.coords.latitude - lastPos.latitude
-        const dy = pos.coords.longitude - lastPos.longitude
-        setDistance(d => d + Math.sqrt(dx*dx + dy*dy) * 111139)
-      }
-      setLastPos(pos.coords)
-    })
+    const watchId = navigator.geolocation.watchPosition(
+      pos => {
+        const { speed, latitude, longitude } = pos.coords
+        setSpeedMs(speed || 0)
+        if (lastPos.current) {
+          const d = haversineDistance(
+            lastPos.current.latitude,
+            lastPos.current.longitude,
+            latitude,
+            longitude
+          )
+          setDistance(prev => prev + d)
+        }
+        lastPos.current = { latitude, longitude }
+      },
+      err => setError(err.message)
+    )
     return () => navigator.geolocation.clearWatch(watchId)
-  }, [lastPos])
+  }, [])
 
-  const duration = (Date.now() - startTime) / 1000
-  const avgSpeed = distance && duration ? (distance/1000) / (duration/3600) : 0
+  const duration = (Date.now() - startTime.current) / 1000
+  const avgSpeedMs = distance && duration ? distance / duration : 0
+  const convert = ms => (unit === 'mph' ? ms * 2.23694 : ms * 3.6)
 
-  return { speed, distance, duration, avgSpeed }
+  return {
+    speed: convert(speedMs),
+    distance,
+    duration,
+    avgSpeed: convert(avgSpeedMs),
+    error
+  }
 }
