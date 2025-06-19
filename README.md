@@ -28,4 +28,18 @@ npm run build
 npm run preview
 ```
 
-Toggle premium mode in `src/utils/featureFlags.js`.
+### Lint
+
+```bash
+npm run lint
+```
+
+### Test
+
+```bash
+npm test
+```
+
+## License
+
+This project is released under the [MIT](LICENSE) license.
