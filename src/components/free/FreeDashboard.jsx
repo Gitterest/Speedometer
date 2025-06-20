@@ -7,6 +7,8 @@ import UnitToggle from './UnitToggle'
 import TripInfo from '../ui/TripInfo'
 import AROverlay from '../ui/AROverlay'
 import { useTheme } from '../../context/ThemeContext'
+import { motion } from 'framer-motion'
+import { sweep } from '../../hooks/useAnimations'
 import { useUnit } from '../../context/UnitContext'
 import useSpeed from '../../hooks/useSpeed'
 
@@ -20,6 +22,12 @@ import ThemeToggle from '../ui/ThemeToggle'
 export default function FreeDashboard() {
 
   return (
+    <motion.div
+      className="max-w-sm mx-auto p-2"
+      variants={sweep}
+      initial="initial"
+      animate="animate"
+    >
 
     <div className="max-w-sm mx-auto p-2 relative">
     <div className="max-w-sm mx-auto p-2 space-y-4">
@@ -35,6 +43,7 @@ export default function FreeDashboard() {
       <TripSummary />
       <TripInfo />
       <AdBanner />
+    </motion.div>
       <AROverlay />
     </div>
   )
