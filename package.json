@@ -10,17 +10,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "framer-motion": "^12.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
     "framer-motion": "^7.10.3"
+    "framer-motion": "^12.18.1",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.5.0",
+    "vite": "^6.3.5",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import HUD from '../HUD'
+import SpeedHUD from '../../ui/SpeedHUD'
 import { UnitProvider } from '../../../context/UnitContext'
 
 jest.mock('../../../hooks/useSpeed', () => () => ({ speed: 0, distance: 0, duration: 0, avgSpeed: 0, error: null }))
@@ -8,7 +8,7 @@ jest.mock('../../../hooks/useSpeed', () => () => ({ speed: 0, distance: 0, durat
 test('renders speed display with unit', () => {
   render(
     <UnitProvider>
-      <HUD />
+      <SpeedHUD />
     </UnitProvider>
   )
   expect(screen.getByTestId('speed-display').textContent).toContain('km/h')
