@@ -10,3 +10,6 @@
     @apply bg-white/10 backdrop-blur-md backdrop-saturate-150;
   }
 }
+
+@import './tailwind.custom.css';
+
