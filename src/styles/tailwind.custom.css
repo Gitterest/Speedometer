@@ -1,0 +1,10 @@
+@layer utilities {
+  .bg-radial {
+    background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+
+  .frosted-glass {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
