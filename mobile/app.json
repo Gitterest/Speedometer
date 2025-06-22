@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Speedometer",
+    "slug": "speedometer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow access to your location to calculate speed"
+      }
+    },
+    "android": {
+      "permissions": ["ACCESS_FINE_LOCATION"],
+      "package": "com.example.speedometer"
+    },
+    "plugins": ["nativewind"]
+  }
+}
