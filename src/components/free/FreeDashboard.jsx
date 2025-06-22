@@ -6,6 +6,7 @@ import AdBanner from './AdBanner'
 import UnitToggle from './UnitToggle'
 import TripInfo from '../ui/TripInfo'
 import AROverlay from '../ui/AROverlay'
+import ThemeToggle from '../ui/ThemeToggle'
 import { useTheme } from '../../context/ThemeContext'
 import { motion } from 'framer-motion'
 import { sweep } from '../../hooks/useAnimations'
@@ -17,10 +18,6 @@ export default function FreeDashboard() {
   const { speed } = useSpeed(unit)
   const { dark, setDark } = useTheme()
 
-import ThemeToggle from '../ui/ThemeToggle'
-
-export default function FreeDashboard() {
-
   return (
     <motion.div
       className="max-w-sm mx-auto p-2"
@@ -28,23 +25,20 @@ export default function FreeDashboard() {
       initial="initial"
       animate="animate"
     >
-
-    <div className="max-w-sm mx-auto p-2 relative">
-    <div className="max-w-sm mx-auto p-2 space-y-4">
-
-      <div className="flex justify-between items-center space-x-2">
-        <h1 className="text-xl font-bold">Free Speedometer</h1>
-        <UnitToggle />
-        <ThemeToggle />
+      <div className="max-w-sm mx-auto p-2 relative space-y-4">
+        <div className="flex justify-between items-center space-x-2">
+          <h1 className="text-xl font-bold">Free Speedometer</h1>
+          <UnitToggle />
+          <ThemeToggle />
+        </div>
+        <SpeedHUD />
+        <Gauge value={speed} />
+        <SpeedAlert />
+        <TripSummary />
+        <TripInfo />
+        <AdBanner />
+        <AROverlay />
       </div>
-      <SpeedHUD />
-      <Gauge value={speed} />
-      <SpeedAlert />
-      <TripSummary />
-      <TripInfo />
-      <AdBanner />
     </motion.div>
-      <AROverlay />
-    </div>
   )
 }

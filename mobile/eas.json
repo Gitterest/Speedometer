@@ -1,0 +1,10 @@
+{
+  "build": {
+    "android": {
+      "workflow": "managed"
+    },
+    "ios": {
+      "workflow": "managed"
+    }
+  }
+}

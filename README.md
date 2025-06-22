@@ -53,3 +53,28 @@ In addition, the Tailwind theme includes `neon.cyan`, `neon.magenta` and
 ## License
 
 This project is released under the [MIT](LICENSE) license.
+
+## Mobile App
+
+The `/mobile` folder contains a React Native version powered by Expo.
+
+### Setup
+
+```bash
+cd mobile
+npm install
+```
+
+### Development
+
+```bash
+npx expo start
+```
+
+### Production build
+
+```bash
+# Android or iOS
+npx eas build --platform android
+npx eas build --platform ios
+```
