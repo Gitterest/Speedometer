@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { useUnit } from '../context/UnitContext'
-import useSpeed from '../hooks/useSpeed'
+import { useSpeedContext } from '../context/SpeedContext'
 
 export default function TripSummary() {
   const { unit } = useUnit()
-  const { distance, duration, avgSpeed } = useSpeed(unit)
+  const { distance, duration, avgSpeed } = useSpeedContext()
   const dist = unit === 'kmh' ? distance / 1000 : distance / 1609.34
   const distUnit = unit === 'kmh' ? 'km' : 'mi'
   const speedUnit = unit === 'kmh' ? 'km/h' : 'mph'

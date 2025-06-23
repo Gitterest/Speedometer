@@ -9,6 +9,7 @@ import TripSummary from './components/TripSummary'
 import AdBanner from './components/AdBanner'
 import { UnitProvider } from './context/UnitContext'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
+import { SpeedProvider } from './context/SpeedContext'
 import { StatusBar } from 'expo-status-bar'
 
 function Dashboard() {
@@ -35,7 +36,9 @@ export default function App() {
   return (
     <ThemeProvider>
       <UnitProvider>
-        <Dashboard />
+        <SpeedProvider>
+          <Dashboard />
+        </SpeedProvider>
       </UnitProvider>
     </ThemeProvider>
   )

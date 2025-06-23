@@ -1,7 +1,6 @@
 import React from 'react'
 import Svg, { Path, Line, G } from 'react-native-svg'
 import { View } from 'react-native'
-import { motion } from 'moti'
 
 export default function Gauge({ value = 0, max = 180 }: { value?: number; max?: number }) {
   const angle = (-90 + Math.min(value, max) / max * 180)

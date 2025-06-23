@@ -7,16 +7,12 @@ import UnitToggle from './UnitToggle'
 import TripInfo from '../ui/TripInfo'
 import AROverlay from '../ui/AROverlay'
 import ThemeToggle from '../ui/ThemeToggle'
-import { useTheme } from '../../context/ThemeContext'
 import { motion } from 'framer-motion'
 import { sweep } from '../../hooks/useAnimations'
-import { useUnit } from '../../context/UnitContext'
-import useSpeed from '../../hooks/useSpeed'
+import { SpeedProvider, useSpeedContext } from '../../context/SpeedContext'
 
-export default function FreeDashboard() {
-  const { unit } = useUnit()
-  const { speed } = useSpeed(unit)
-  const { dark, setDark } = useTheme()
+function DashboardContent() {
+  const { speed } = useSpeedContext()
 
   return (
     <motion.div
@@ -40,5 +36,13 @@ export default function FreeDashboard() {
         <AROverlay />
       </div>
     </motion.div>
+  )
+}
+
+export default function FreeDashboard() {
+  return (
+    <SpeedProvider>
+      <DashboardContent />
+    </SpeedProvider>
   )
 }

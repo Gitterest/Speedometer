@@ -1,11 +1,11 @@
 import { motion, useMotionValue, useMotionValueEvent, animate } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import useSpeed from '../../hooks/useSpeed'
 import { useUnit } from '../../context/UnitContext'
+import { useSpeedContext } from '../../context/SpeedContext'
 
 export default function SpeedHUD() {
   const { unit } = useUnit()
-  const { speed, error } = useSpeed(unit)
+  const { speed, error } = useSpeedContext()
   const unitLabel = unit === 'kmh' ? 'km/h' : 'mph'
 
   const value = useMotionValue(0)

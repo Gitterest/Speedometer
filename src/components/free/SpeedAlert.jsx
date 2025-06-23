@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import useSpeed from '../../hooks/useSpeed'
 import { useUnit } from '../../context/UnitContext'
+import { useSpeedContext } from '../../context/SpeedContext'
 import { motion } from 'framer-motion'
 import { fade } from '../../hooks/useAnimations'
 
 export default function SpeedAlert() {
   const { unit } = useUnit()
-  const { speed } = useSpeed(unit)
+  const { speed } = useSpeedContext()
   const [limit, setLimit] = useState(unit === 'kmh' ? 80 : 50)
   const over = speed > limit
   return (

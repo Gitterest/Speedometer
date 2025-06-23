@@ -1,11 +1,11 @@
-import useSpeed from '../../hooks/useSpeed'
 import { useUnit } from '../../context/UnitContext'
+import { useSpeedContext } from '../../context/SpeedContext'
 import { motion } from 'framer-motion'
 import { sweep } from '../../hooks/useAnimations'
 
 export default function TripSummary() {
   const { unit } = useUnit()
-  const { distance, duration, avgSpeed } = useSpeed(unit)
+  const { distance, duration, avgSpeed } = useSpeedContext()
   return (
     <motion.div
       className="p-4 space-y-1 text-sm"
