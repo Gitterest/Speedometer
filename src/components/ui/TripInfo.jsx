@@ -1,5 +1,5 @@
-import useSpeed from '../../hooks/useSpeed'
 import { useUnit } from '../../context/UnitContext'
+import { useSpeedContext } from '../../context/SpeedContext'
 import { useState, useEffect } from 'react'
 
 function useAnimatedNumber(value, duration = 400) {
@@ -7,20 +7,22 @@ function useAnimatedNumber(value, duration = 400) {
   useEffect(() => {
     let start = display
     let startTime
+    let frame
     function step(t) {
       if (!startTime) startTime = t
       const progress = Math.min((t - startTime) / duration, 1)
       setDisplay(start + (value - start) * progress)
-      if (progress < 1) requestAnimationFrame(step)
+      if (progress < 1) frame = requestAnimationFrame(step)
     }
-    requestAnimationFrame(step)
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
   }, [value, duration])
   return display
 }
 
 export default function TripInfo() {
   const { unit } = useUnit()
-  const { speed, distance, duration, avgSpeed } = useSpeed(unit)
+  const { speed, distance, duration, avgSpeed } = useSpeedContext()
   const dist = unit === 'kmh' ? distance / 1000 : distance / 1609.34
   const speedUnit = unit === 'kmh' ? 'km/h' : 'mph'
   const distUnit = unit === 'kmh' ? 'km' : 'mi'

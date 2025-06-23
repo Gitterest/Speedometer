@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { View, TextInput, Text } from 'react-native'
 import { useUnit } from '../context/UnitContext'
-import useSpeed from '../hooks/useSpeed'
+import { useSpeedContext } from '../context/SpeedContext'
 
 export default function SpeedAlert() {
   const { unit } = useUnit()
-  const { speed } = useSpeed(unit)
+  const { speed } = useSpeedContext()
   const [limit, setLimit] = useState(unit === 'kmh' ? 80 : 50)
   const over = speed > limit
   const unitLabel = unit === 'kmh' ? 'km/h' : 'mph'

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import { useUnit } from '../context/UnitContext'
-import useSpeed from '../hooks/useSpeed'
+import { useSpeedContext } from '../context/SpeedContext'
 
 export default function SpeedHUD() {
   const { unit } = useUnit()
-  const { speed, error } = useSpeed(unit)
+  const { speed, error } = useSpeedContext()
   const unitLabel = unit === 'kmh' ? 'km/h' : 'mph'
   return (
     <View className="items-center p-4">
