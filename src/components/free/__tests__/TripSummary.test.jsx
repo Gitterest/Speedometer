@@ -11,7 +11,8 @@ jest.mock('../../../context/SpeedContext', () => ({
 const mockedUseSpeedContext = useSpeedContext
 
 test('renders trip stats', () => {
-  mockedUseSpeedContext.mockReturnValue({ distance: 2000, duration: 100, avgSpeed: 50 })
+  mockedUseSpeedContext.mockReturnValue({ distance: 2000, duration: 100, avgSpeed: 50, maxSpeed: 80, clearTrip: jest.fn() })
+  mockedUseSpeedContext.mockReturnValue({ distance: 2000, duration: 100, avgSpeed: 50, maxSpeed: 80 })
   render(
     <UnitProvider>
       <TripSummary />
@@ -20,4 +21,7 @@ test('renders trip stats', () => {
   expect(screen.getByText(/Distance:/)).toBeInTheDocument()
   expect(screen.getByText(/Duration:/)).toBeInTheDocument()
   expect(screen.getByText(/Avg speed/)).toBeInTheDocument()
+  expect(screen.getByText(/Max speed/)).toBeInTheDocument()
+  expect(screen.getByText(/Clear trip/)).toBeInTheDocument()
+  expect(screen.getByText(/Max:/)).toBeInTheDocument()
 })

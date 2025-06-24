@@ -9,14 +9,19 @@ import TripSummary from './components/TripSummary'
 import AdBanner from './components/AdBanner'
 import HUDToggle from './components/HUDToggle'
 import { UnitProvider } from './context/UnitContext'
+import { UnitProvider, useUnit } from './context/UnitContext'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { SpeedProvider } from './context/SpeedContext'
 import { HUDProvider, useHUD } from './context/HUDContext'
 import { StatusBar } from 'expo-status-bar'
+import useVoiceCommands from './hooks/useVoiceCommands'
 
 function Dashboard() {
   const { dark } = useTheme()
   const { hud } = useHUD()
+  const { hud, toggleHUD } = useHUD()
+  const { toggleUnit } = useUnit()
+  useVoiceCommands(toggleHUD, toggleUnit)
   return (
     <SafeAreaView className={dark ? 'bg-black flex-1' : 'bg-white flex-1'}>
       {hud ? (

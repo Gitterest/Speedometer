@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Text } from 'react-native'
+import { View, TextInput, Text, Vibration } from 'react-native'
 import { useUnit } from '../context/UnitContext'
 import { useSpeedContext } from '../context/SpeedContext'
 
@@ -8,6 +8,13 @@ export default function SpeedAlert() {
   const { speed } = useSpeedContext()
   const [limit, setLimit] = useState(unit === 'kmh' ? 80 : 50)
   const over = speed > limit
+  React.useEffect(() => {
+    if (over) {
+      Vibration.vibrate([0, 200])
+    } else {
+      Vibration.cancel()
+    }
+  }, [over])
   const unitLabel = unit === 'kmh' ? 'km/h' : 'mph'
   return (
     <View className="p-4">

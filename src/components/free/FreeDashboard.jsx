@@ -14,11 +14,14 @@ import { sweep } from '../../hooks/useAnimations'
 import { SpeedProvider, useSpeedContext } from '../../context/SpeedContext'
 import { useHUD } from '../../context/HUDContext'
 import { useUnit } from '../../context/UnitContext'
+import useVoiceCommands from '../../hooks/useVoiceCommands'
 
 function DashboardContent() {
   const { speed, setSpeed } = useSpeedContext()
   const { hud, toggleHUD } = useHUD()
   const { toggleUnit } = useUnit()
+
+  useVoiceCommands(toggleHUD, toggleUnit)
 
   React.useEffect(() => {
     function handle(e) {
