@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import useSpeed from '../hooks/useSpeed'
 import { useUnit } from './UnitContext'
 
@@ -8,6 +8,7 @@ export interface SpeedData {
   duration: number
   avgSpeed: number
   error: string | null
+  setSpeed?: (v: number | null) => void
 }
 
 const SpeedContext = createContext<SpeedData | undefined>(undefined)
@@ -15,7 +16,13 @@ const SpeedContext = createContext<SpeedData | undefined>(undefined)
 export const SpeedProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { unit } = useUnit()
   const data = useSpeed(unit)
-  return <SpeedContext.Provider value={data}>{children}</SpeedContext.Provider>
+  const [override, setOverride] = useState<number | null>(null)
+  const value = {
+    ...data,
+    speed: override !== null ? override : data.speed,
+    setSpeed: setOverride,
+  }
+  return <SpeedContext.Provider value={value}>{children}</SpeedContext.Provider>
 }
 
 export const useSpeedContext = () => {
