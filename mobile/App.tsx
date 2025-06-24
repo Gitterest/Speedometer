@@ -8,6 +8,7 @@ import ThemeToggle from './components/ThemeToggle'
 import TripSummary from './components/TripSummary'
 import AdBanner from './components/AdBanner'
 import HUDToggle from './components/HUDToggle'
+import { UnitProvider } from './context/UnitContext'
 import { UnitProvider, useUnit } from './context/UnitContext'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { SpeedProvider } from './context/SpeedContext'
@@ -17,6 +18,7 @@ import useVoiceCommands from './hooks/useVoiceCommands'
 
 function Dashboard() {
   const { dark } = useTheme()
+  const { hud } = useHUD()
   const { hud, toggleHUD } = useHUD()
   const { toggleUnit } = useUnit()
   useVoiceCommands(toggleHUD, toggleUnit)
