@@ -11,7 +11,7 @@ jest.mock('../../../context/SpeedContext', () => ({
 const mockedUseSpeedContext = useSpeedContext
 
 test('shows warning when speed exceeds limit', () => {
-  mockedUseSpeedContext.mockReturnValue({ speed: 100 })
+  mockedUseSpeedContext.mockReturnValue({ speed: 100, maxSpeed: 100 })
   render(
     <UnitProvider>
       <SpeedAlert />
