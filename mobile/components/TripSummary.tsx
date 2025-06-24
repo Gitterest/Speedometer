@@ -6,6 +6,7 @@ import { useSpeedContext } from '../context/SpeedContext'
 export default function TripSummary() {
   const { unit } = useUnit()
   const { distance, duration, avgSpeed, maxSpeed, clearTrip } = useSpeedContext()
+  const { distance, duration, avgSpeed, maxSpeed } = useSpeedContext()
   const dist = unit === 'kmh' ? distance / 1000 : distance / 1609.34
   const distUnit = unit === 'kmh' ? 'km' : 'mi'
   const speedUnit = unit === 'kmh' ? 'km/h' : 'mph'
