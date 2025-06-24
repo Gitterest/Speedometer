@@ -1,4 +1,3 @@
-import React, { createContext, useContext, useState } from 'react'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import useSpeed from '../hooks/useSpeed'
@@ -10,7 +9,6 @@ export interface SpeedData {
   distance: number
   duration: number
   avgSpeed: number
-  maxSpeed: number
   error: string | null
   clearTrip: () => void
   setSpeed?: (v: number | null) => void
@@ -22,9 +20,6 @@ export const SpeedProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const { unit } = useUnit()
   const data = useSpeed(unit)
   const [override, setOverride] = useState<number | null>(null)
-  const value = {
-    ...data,
-    speed: override !== null ? override : data.speed,
   const [baseDistance, setBaseDistance] = useState(0)
   const [baseDuration, setBaseDuration] = useState(0)
   const [maxSpeed, setMaxSpeed] = useState(0)
