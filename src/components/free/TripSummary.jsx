@@ -5,7 +5,7 @@ import { sweep } from '../../hooks/useAnimations'
 
 export default function TripSummary() {
   const { unit } = useUnit()
-  const { distance, duration, avgSpeed } = useSpeedContext()
+  const { distance, duration, avgSpeed, maxSpeed, clearTrip } = useSpeedContext()
   return (
     <motion.div
       className="p-4 space-y-1 text-sm"
@@ -21,6 +21,12 @@ export default function TripSummary() {
       <div>
         Avg speed: {avgSpeed.toFixed(1)} {unit === 'kmh' ? 'km/h' : 'mph'}
       </div>
+      <div>
+        Max speed: {maxSpeed.toFixed(1)} {unit === 'kmh' ? 'km/h' : 'mph'}
+      </div>
+      <button onClick={clearTrip} className="underline text-xs">
+        Clear trip
+      </button>
     </motion.div>
   )
 }
