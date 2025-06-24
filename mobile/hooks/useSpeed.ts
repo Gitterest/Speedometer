@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import * as Location from 'expo-location'
+import { haversineDistance } from '../utils/geo'
 import { Unit } from '../context/UnitContext'
 
 export default function useSpeed(unit: Unit) {
@@ -23,9 +24,11 @@ export default function useSpeed(unit: Unit) {
           const { speed, latitude, longitude } = pos.coords
           setSpeedMs(speed ?? 0)
           if (lastPos.current) {
-            const d = Location.distance(
-              { latitude, longitude },
-              { latitude: lastPos.current.latitude, longitude: lastPos.current.longitude }
+            const d = haversineDistance(
+              lastPos.current.latitude,
+              lastPos.current.longitude,
+              latitude,
+              longitude
             )
             setDistance(prev => prev + d)
           }
