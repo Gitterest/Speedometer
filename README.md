@@ -67,8 +67,11 @@ npm install
 
 ### Development
 
+This app uses native modules that aren't available in Expo Go. Use the Expo dev
+client instead:
+
 ```bash
-npx expo start
+npx expo run:android # or `npx expo run:ios`
 ```
 
 ### Production build
