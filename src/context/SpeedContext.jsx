@@ -1,4 +1,3 @@
-import { createContext, useContext, useState } from 'react'
 import { createContext, useContext, useState, useEffect } from 'react'
 import useSpeed from '../hooks/useSpeed'
 import { useUnit } from './UnitContext'
@@ -9,9 +8,6 @@ export function SpeedProvider({ children }) {
   const { unit } = useUnit()
   const data = useSpeed(unit)
   const [override, setOverride] = useState(null)
-  const value = {
-    ...data,
-    speed: override !== null ? override : data.speed,
   const [baseDistance, setBaseDistance] = useState(0)
   const [baseDuration, setBaseDuration] = useState(0)
   const [maxSpeed, setMaxSpeed] = useState(0)
