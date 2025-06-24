@@ -4,6 +4,7 @@ import { useUnit } from './UnitContext'
 
 export interface SpeedData {
   speed: number
+  maxSpeed: number
   distance: number
   duration: number
   avgSpeed: number

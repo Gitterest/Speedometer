@@ -3,6 +3,7 @@ import { haversineDistance } from '../utils/geo'
 
 export default function useSpeed(unit = 'kmh') {
   const [speedMs, setSpeedMs] = useState(0)
+  const [maxSpeedMs, setMaxSpeedMs] = useState(0)
   const [distance, setDistance] = useState(0) // meters
   const [error, setError] = useState(null)
   const startTime = useRef(Date.now())
@@ -13,6 +14,7 @@ export default function useSpeed(unit = 'kmh') {
       pos => {
         const { speed, latitude, longitude } = pos.coords
         setSpeedMs(speed || 0)
+        setMaxSpeedMs(prev => Math.max(prev, speed || 0))
         if (lastPos.current) {
           const d = haversineDistance(
             lastPos.current.latitude,
@@ -35,6 +37,7 @@ export default function useSpeed(unit = 'kmh') {
 
   return {
     speed: convert(speedMs),
+    maxSpeed: convert(maxSpeedMs),
     distance,
     duration,
     avgSpeed: convert(avgSpeedMs),
