@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .neon-green {
+    color: #39ff14;
+    text-shadow: 0 0 8px #39ff14, 0 0 16px #39ff14;
+  }
+  .neon-cyan {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff;
+  }
+  .neon-magenta {
+    color: #ff00ff;
+    text-shadow: 0 0 8px #ff00ff, 0 0 16px #ff00ff;
+  }
+  .glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 18px;
+    border: 1.5px solid rgba(255,255,255,0.18);
+  }
+  .energy-field {
+    box-shadow: 0 0 32px 8px #00ffff66, 0 0 64px 16px #39ff1466;
+    animation: energyPulse 2s infinite alternate;
+  }
+}
+
+@keyframes energyPulse {
+  0% { box-shadow: 0 0 32px 8px #00ffff66, 0 0 64px 16px #39ff1466; }
+  100% { box-shadow: 0 0 48px 16px #00ffffcc, 0 0 96px 32px #39ff14cc; }
+}
+
+body {
+  @apply bg-gradient-to-br from-black via-gray-900 to-gray-800;
+}

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Button } from 'react-native'
 import { useUnit } from '../context/UnitContext'
+import AnimatedButton from './AnimatedButton'
 
 export default function UnitToggle() {
   const { unit, toggleUnit } = useUnit()
-  return <Button title={unit === 'kmh' ? 'KM/H' : 'MPH'} onPress={toggleUnit} />
+  return <AnimatedButton title={unit === 'kmh' ? 'KM/H' : 'MPH'} onPress={toggleUnit} />
 }
