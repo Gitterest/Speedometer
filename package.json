@@ -1,5 +1,6 @@
 {
   "name": "speedometer",
+  "type": "module",
   "version": "1.0.0",
   "description": "Mobile speedometer app built with React and Vite",
   "scripts": {
