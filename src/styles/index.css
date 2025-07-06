@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './tailwind.custom.css';
+
 @layer utilities {
   .text-neon-green {
     @apply text-green-400 drop-shadow-[0_0_6px_rgba(0,255,0,0.7)];
@@ -10,9 +12,21 @@
   .glass {
     @apply bg-white/10 backdrop-blur-md backdrop-saturate-150;
   }
+  .bg-speedometer-default {
+    background-image: radial-gradient(circle at center, #222 0%, #000 80%);
+  }
+  .bg-speedometer-dusk {
+    background-image: radial-gradient(circle at center, #331c00 0%, #000 80%);
+  }
+  .bg-speedometer-night {
+    background-image: radial-gradient(circle at center, #001533 0%, #000 80%);
+  }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 72e31ff2cd728f6cd331c206f8a9f5dab0012351
 body {
   @apply bg-gradient-to-br from-black via-gray-900 to-gray-800 text-gray-100;
   @apply font-digital bg-gradient-to-br from-black via-gray-900 to-gray-800 text-gray-100;
