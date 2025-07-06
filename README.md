@@ -15,6 +15,7 @@ npm run dev
 ```
 
 Visit `http://localhost:5173` in your browser.
+The new `/pro` route showcases a more detailed speedometer interface.
 
 ### Build
 
