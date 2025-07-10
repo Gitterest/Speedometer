@@ -1,11 +1,12 @@
 import { motion, useMotionValue, animate } from 'framer-motion'
 import { useEffect } from 'react'
+import { speedToAngle } from '../../common/speedToAngle'
 
 export default function Gauge({ value = 0, max = 180 }) {
   const angle = useMotionValue(-90)
 
   useEffect(() => {
-    const target = -90 + Math.min(value, max) / max * 180
+    const target = speedToAngle(value, max, -90, 90)
     const controls = animate(angle, target, { duration: 0.5, ease: 'easeInOut' })
     return controls.stop
   }, [value, max, angle])
