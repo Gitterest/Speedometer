@@ -2,11 +2,20 @@
 
 Mobile speedometer built with React, Vite and Tailwind CSS.
 
+## 3D Speedometer
+
+The Pro dashboard now includes an experimental 3D gauge powered by
+`react-three-fiber` and `react-spring`. Toggle the **3D** button to switch
+between the original SVG dial and the realtime WebGL version.
+
 ## Setup
 
 ```bash
 npm install
 ```
+
+This installs additional 3D rendering libraries such as
+`@react-three/fiber` and `@react-spring/three`.
 
 ### Development
 
