@@ -20,7 +20,7 @@ export function SpeedProvider({ children }) {
         setBaseDistance(distance)
         setBaseDuration(duration)
         setMaxSpeed(maxSpeed)
-      } catch (e) {
+      } catch {
         // ignore parse errors
       }
     }

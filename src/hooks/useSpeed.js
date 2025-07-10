@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { haversineDistance } from '../utils/geo'
+import { convertSpeed } from '../common/convertSpeed'
 
 export default function useSpeed(unit = 'kmh') {
   const [speedMs, setSpeedMs] = useState(0)
@@ -33,14 +34,13 @@ export default function useSpeed(unit = 'kmh') {
 
   const duration = (Date.now() - startTime.current) / 1000
   const avgSpeedMs = distance && duration ? distance / duration : 0
-  const convert = ms => (unit === 'mph' ? ms * 2.23694 : ms * 3.6)
 
   return {
-    speed: convert(speedMs),
-    maxSpeed: convert(maxSpeedMs),
+    speed: convertSpeed(speedMs, unit),
+    maxSpeed: convertSpeed(maxSpeedMs, unit),
     distance,
     duration,
-    avgSpeed: convert(avgSpeedMs),
+    avgSpeed: convertSpeed(avgSpeedMs, unit),
     error
   }
 }

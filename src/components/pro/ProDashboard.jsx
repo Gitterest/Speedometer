@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from "react"
 import RealisticSpeedometer from './RealisticSpeedometer'
 import ThreeSpeedometer from './ThreeSpeedometer'
 import UnitToggle from '../free/UnitToggle'
