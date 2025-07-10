@@ -2,6 +2,7 @@ import { motion, useMotionValue, animate, useMotionValueEvent } from 'framer-mot
 import { useEffect, useState } from 'react'
 import { useUnit } from '../../context/UnitContext'
 import { useSpeedContext } from '../../context/SpeedContext'
+import { speedToAngle } from '../../common/speedToAngle'
 
 export default function RealisticSpeedometer({ className = '', max = 240 }) {
   const { unit } = useUnit()
@@ -19,7 +20,7 @@ export default function RealisticSpeedometer({ className = '', max = 240 }) {
   }, [speed, value])
 
   useEffect(() => {
-    const target = -120 + Math.min(speed, max) / max * 240
+    const target = speedToAngle(speed, max, -120, 120)
     const controls = animate(angle, target, { duration: 0.3 })
     return controls.stop
   }, [speed, max, angle])
