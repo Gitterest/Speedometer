@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense, useMemo } from "react"
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
@@ -8,19 +8,36 @@ import { speedToAngle } from '../../common/speedToAngle'
 
 function Needle({ angle }) {
   return (
-    <animated.mesh rotation-z={angle.to(a => a)}>
-      <boxGeometry args={[0.02, 0.4, 0.02]} />
-      <meshStandardMaterial color="red" />
+    <animated.mesh rotation-z={angle.to(a => a)} position={[0, 0, 0.01]}>
+      <boxGeometry args={[0.02, 0.5, 0.02]} />
+      <meshPhysicalMaterial color="#e11d48" emissive="#ff7f7f" roughness={0.3} />
     </animated.mesh>
   )
 }
 
 function Dial() {
+  const ticks = useMemo(() => Array.from({ length: 60 }), [])
   return (
-    <mesh rotation-x={-Math.PI / 2}>
-      <torusGeometry args={[1, 0.05, 16, 100]} />
-      <meshStandardMaterial color="#444" metalness={0.6} roughness={0.4} />
-    </mesh>
+    <group rotation-x={-Math.PI / 2}>
+      <mesh>
+        <ringGeometry args={[0.9, 1, 64]} />
+        <meshStandardMaterial color="#222" metalness={0.6} roughness={0.4} />
+      </mesh>
+      {ticks.map((_, i) => {
+        const angle = (i / 60) * Math.PI * 2
+        const length = i % 5 === 0 ? 0.1 : 0.05
+        return (
+          <mesh
+            key={i}
+            position={[Math.cos(angle) * 0.95, Math.sin(angle) * 0.95, 0]}
+            rotation={[0, 0, angle]}
+          >
+            <boxGeometry args={[0.005, length, 0.02]} />
+            <meshBasicMaterial color="#888" />
+          </mesh>
+        )
+      })}
+    </group>
   )
 }
 

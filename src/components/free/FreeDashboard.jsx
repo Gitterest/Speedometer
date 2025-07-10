@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from "react"
 import SpeedHUD from '../ui/SpeedHUD'
 import Gauge from '../ui/Gauge'
 import SpeedAlert from './SpeedAlert'
@@ -23,7 +23,7 @@ function DashboardContent() {
 
   useVoiceCommands(toggleHUD, toggleUnit)
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handle(e) {
       if (e.key === 'u') toggleUnit()
       if (e.key === 'h') toggleHUD()

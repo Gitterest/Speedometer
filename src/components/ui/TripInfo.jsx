@@ -16,7 +16,7 @@ function useAnimatedNumber(value, duration = 400) {
     }
     frame = requestAnimationFrame(step)
     return () => cancelAnimationFrame(frame)
-  }, [value, duration])
+  }, [value, duration, display])
   return display
 }
 
