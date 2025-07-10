@@ -25,11 +25,34 @@
     box-shadow: 0 0 32px 8px #00ffff66, 0 0 64px 16px #39ff1466;
     animation: energyPulse 2s infinite alternate;
   }
+  .particle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ffff;
+    opacity: 0.18;
+    position: absolute;
+    animation: floatParticle 3s infinite ease-in-out alternate;
+  }
+  .neon-glow {
+    filter: drop-shadow(0 0 8px #00ffff) drop-shadow(0 0 16px #39ff14);
+  }
+  .transition-float {
+    animation: floatY 2.5s infinite ease-in-out alternate;
+  }
 }
 
 @keyframes energyPulse {
   0% { box-shadow: 0 0 32px 8px #00ffff66, 0 0 64px 16px #39ff1466; }
   100% { box-shadow: 0 0 48px 16px #00ffffcc, 0 0 96px 32px #39ff14cc; }
+}
+@keyframes floatParticle {
+  0% { transform: translateY(0); opacity: 0.18; }
+  100% { transform: translateY(-18px); opacity: 0.32; }
+}
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12px); }
 }
 
 body {

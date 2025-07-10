@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -12,8 +13,16 @@
       }
     },
     "android": {
-      "permissions": ["ACCESS_FINE_LOCATION"],
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "INTERNET"
+      ],
       "package": "com.example.speedometer"
-    }
+    },
+    "plugins": [
+      "expo-location",
+      "expo-sensors"
+    ]
   }
 }

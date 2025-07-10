@@ -1,20 +1,33 @@
 import { useEffect } from 'react'
-// import Voice from 'react-native-voice'
+import { Platform } from 'react-native'
 
+// Fallback voice commands for Expo Go compatibility
 export default function useVoiceCommands(
   toggleHUD: () => void,
   toggleUnit: () => void
 ) {
-  // Temporarily disabled due to missing react-native-voice
-  // useEffect(() => {
-  //   Voice.onSpeechResults = e => {
-  //     const text = e.value?.[0]?.toLowerCase() ?? ''
-  //     if (text.includes('hud')) toggleHUD()
-  //     if (text.includes('units')) toggleUnit()
-  //   }
-  //   Voice.start('en-US')
-  //   return () => {
-  //     Voice.destroy().then(Voice.removeAllListeners)
-  //   }
-  // }, [toggleHUD, toggleUnit])
+  useEffect(() => {
+    // For Expo Go, we'll use keyboard shortcuts instead of voice commands
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'h' || e.key === 'H') {
+        toggleHUD()
+      }
+      if (e.key === 'u' || e.key === 'U') {
+        toggleUnit()
+      }
+    }
+
+    // Only add keyboard listeners for web
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      window.addEventListener('keydown', handleKeyPress)
+      return () => window.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [toggleHUD, toggleUnit])
+
+  // Return a dummy function for compatibility
+  return {
+    startListening: () => console.log('Voice commands not available in Expo Go'),
+    stopListening: () => console.log('Voice commands not available in Expo Go'),
+    isListening: false
+  }
 }
